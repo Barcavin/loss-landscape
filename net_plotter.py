@@ -307,10 +307,10 @@ def name_direction_file(args):
         if file3:
             assert exists(file3), "%s does not exist!" % file3
             if file1[:file1.rfind('/')] == file3[:file3.rfind('/')]:
-               dir_file += file3
+                dir_file += file3
             else:
-               # model_file and model_file3 are under different folders
-               dir_file += file3[:file3.rfind('/')] + '_' + file3[file3.rfind('/')+1:]
+                # model_file and model_file3 are under different folders
+                dir_file += file3[:file3.rfind('/')] + '_' + file3[file3.rfind('/')+1:]
         else:
             if args.yignore:
                 dir_file += '_yignore=' + args.yignore

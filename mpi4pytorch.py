@@ -15,7 +15,7 @@ def setup_MPI():
             pass
         comm = A(comm)
     except:
-       comm = None
+        comm = None
 
     return comm
 

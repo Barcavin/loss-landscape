@@ -24,6 +24,9 @@ import model_loader
 import scheduler
 import mpi4pytorch as mpi
 
+# Setup env for preventing lock on h5py file for newer h5py versions
+os.environ["HDF5_USE_FILE_LOCKING"] = "FALSE"
+
 def name_surface_file(args, dir_file):
     # skip if surf_file is specified in args
     if args.surf_file:
@@ -75,7 +78,6 @@ def crunch(surf_file, net, w, s, d, dataloader, loss_key, acc_key, comm, rank, a
         Calculate the loss values and accuracies of modified models in parallel
         using MPI reduce.
     """
-
     f = h5py.File(surf_file, 'r+' if rank == 0 else 'r')
     losses, accuracies = [], []
     xcoordinates = f['xcoordinates'][:]
